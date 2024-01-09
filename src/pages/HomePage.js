@@ -19,7 +19,7 @@ const HomePage = () => {
       const res = await getPeople.json();
       setEmpData(res);
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching employee data:', error);
     }
   };
 

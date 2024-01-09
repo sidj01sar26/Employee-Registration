@@ -7,18 +7,22 @@ const EmployeeForm = () => {
   const navigate = useNavigate();
 
   const createEmployee = async (data) => {
-    const savedUserResponse = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/createUser`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...data }),
-      }
-    );
-    console.log("FORM RESPONSE......", savedUserResponse);
-    navigate("/")
+    try {
+      const savedUserResponse = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/createUser`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...data }),
+        }
+      );
+      console.log("FORM RESPONSE......", savedUserResponse);
+      navigate("/");
+    } catch (error) {
+      console.error('Error creating employee:', error);
+    }
   };
 
   return (
